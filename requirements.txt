@@ -1,12 +1,1 @@
 Flask
-flask_pymongo
-pymongo
-torch
-torchvision
-pillow
-pandas
-python-dotenv
-flask-session
-razorpay
-langchain-google-genai
-gunicorn
