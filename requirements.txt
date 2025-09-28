@@ -1,0 +1,13 @@
+Flask
+Flask-PyMongo
+flask_session
+pymongo
+bson
+Pillow
+torch
+torchvision
+numpy
+pandas
+python-dotenv
+razorpay
+langchain-google-genai
