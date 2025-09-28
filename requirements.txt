@@ -1,14 +1,12 @@
 Flask
-Flask-PyMongo
-flask_session
+flask_pymongo
 pymongo
-bson
-Pillow
 torch
 torchvision
-numpy
+pillow
 pandas
 python-dotenv
+flask-session
 razorpay
 langchain-google-genai
 gunicorn
