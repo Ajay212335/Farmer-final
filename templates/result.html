@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Recommendation with Farmer Tips</title>
+  <style>
+    /* Reset & Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #e9f5e9;
+      padding: 20px;
+      background-image:url(../static/images/ee.avif);
+
+    }
+    /* Container using CSS Grid */
+    .container {
+      display: grid;
+      grid-template-areas: 
+        "top top top"
+        "left center right"
+        "bottom bottom bottom";
+      grid-template-columns: 1fr 1.2fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+      min-height: 100vh;
+    }
+    /* Top Section: Irrigation Tips */
+    .top {
+      grid-area: top;
+      background: #dff0d8;
+      padding: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      text-align: center;
+    }
+    /* Left Section: Plant Spacing */
+    .left {
+      grid-area: left;
+      background: white;
+      padding: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .left img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    /* Center Section: Crop Recommendation */
+    .center {
+      grid-area: center;
+      background: #fff;
+      padding: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .center img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .center h2 {
+      font-size: 1.8rem;
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+    .center p {
+      font-size: 1.2rem;
+      color: #333;
+    }
+    /* Right Section: Fertilization Guidelines */
+    .right {
+      grid-area: right;
+      background: white;
+      padding: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .right img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    /* Bottom Section: Pest Control */
+    .bottom {
+      grid-area: bottom;
+      background: white;
+      padding: 20px;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      text-align: center;
+    }
+    /* Section Titles */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+      text-decoration: underline;
+    }
+    /* Paragraph Styling */
+    .content {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-areas:
+          "top"
+          "center"
+          "bottom";
+        grid-template-columns: 1fr;
+      }
+      .left, .right { 
+        display: none; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Section: Irrigation Tips -->
+    <div class="top">
+      <div class="section-title">Irrigation Tips</div>
+      <p class="content">Utilize drip irrigation for efficient water use. Water deeply to encourage deep root growth and reduce evaporation losses. Monitor weather forecasts for optimal irrigation scheduling.</p>
+    </div>
+    <!-- Left Section: Plant Spacing -->
+    <div class="left">
+      <div class="section-title">Plant Spacing</div>
+      <img src="{{ url_for('static', filename='images/cc.jpg') }}" alt="Plant Spacing">
+      <p class="content">Optimal plant spacing reduces competition for nutrients, water, and sunlight. Ensure that plants have enough room to grow without overlapping.</p>
+      <p class="content">Follow crop-specific guidelines for spacing distances. Proper spacing also improves air circulation, reducing the risk of fungal infections.</p>
+    </div>
+    <!-- Center Section: Crop Recommendation -->
+    <div class="center">
+      <h2>Recommended Crop</h2>
+      <img src="{{ image_url }}" alt="Predicted Crop Image">
+      <p>The best crop for your conditions is: <strong>{{ crop }}</strong></p>
+    </div>
+    <!-- Right Section: Fertilization Guidelines -->
+    <div class="right">
+      <div class="section-title">Fertilization</div>
+      <img src="{{ url_for('static', filename='images/dd.avif') }}" alt="Fertilization">
+      <p class="content">Apply balanced fertilizers according to soil test results. A mix of organic compost and chemical fertilizers often works best.</p>
+      <p class="content">Regularly monitor nutrient levels in the soil and adjust your fertilization strategy accordingly. This ensures optimal plant growth and maximum yield.</p>
+    </div>
+    <!-- Bottom Section: Pest Control -->
+    <div class="bottom">
+      <div class="section-title">Pest Control</div>
+      <p class="content">Implement integrated pest management practices to protect your crops. Rotate crops to prevent pest buildup.</p>
+      <p class="content">Use eco-friendly pesticides and monitor for signs of infestation. Regular maintenance and preventive measures are key to reducing crop losses.</p>
+    </div>
+  </div>
+</body>
+</html>

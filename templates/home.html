@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Plant Disease Detection
+{% endblock pagetitle %}
+{% block body %}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body{
+    overflow-x: hidden;
+    font-family:'Poppins', sans-serif ; 
+    background-image: url('https://images.unsplash.com/photo-1557234195-bd9f290f0e4d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:300vh;
+    height: 100vh;
+    
+  }
+  @media only screen and (max-width: 830px) {
+    .laptop{
+      display: none;
+    }
+  }
+  @media (min-width:830px) and (max-width: 1536px){
+    .mobile{
+      display: none;
+    }
+  }
+  .laptop{
+    margin-top: 10vh;
+  }
+  .index-btn:hover{
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+</style>
+<div class='mobile p-5'>
+  <div class="row mb-5 text-center text-white">
+    <div class="col-lg-10 mx-auto">
+      <h1 class="display-4" style="padding-top: 2%;font-weight: 400;color:red;"><b>Note✍🏻</b></h1>
+      <p class="lead" style="font-weight: 500;color: black;">Please🙏 Open This Site On Laptop/PC 💻 Screen Only</p>
+      <p class="lead" style="font-weight: 500;color: black;">Thank You 🤝</p>    
+    </div>
+</div>
+</div>
+
+<div class="row mb-5 text-center text-white laptop">
+    <div class="col-lg-10 mx-auto">
+        <h1 class="display-4" style="padding-top: 2%;font-weight: 400;color:white; text-shadow: black 2px 2px 2px;"><b>Plant Disease Detection</b></h1>
+        <p class="lead" style="font-weight: 900;color: white; text-shadow: black 2px 2px 2px;">AI POWERED PLANT IDENTIFICATION AND PLANT DISEASE CLASSIFICATION SYSTEM        </p>
+    </div>
+</div>
+
+<center class="laptop">
+    <a href="/index">
+    <!-- <button class = "bttn-pill bttn-lg btn-primary "><b style="color: black;">AI Engine</b></button> -->
+     <button class="index-btn" style="border: none; font-size: large; font-weight: 800; padding: 30px; background-color:rgba(0, 0, 0, .7);color:white; border-radius: 50px;">Ai Engine</button>
+</a>
+</center>
+
+
+
+
+{% endblock body %}

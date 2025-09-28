@@ -1,0 +1,24 @@
+body {
+    background: url('../css/register.css') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .register-container {
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Slightly transparent */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    text-align: center;
+  }
+  
+  .register-header {
+    margin-bottom: 20px;
+  }
+  

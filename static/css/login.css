@@ -1,0 +1,13 @@
+body {
+    background: url('../static/images/ee.jpg') no-repeat center center fixed;
+background-size: cover;
+
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+  }
+  

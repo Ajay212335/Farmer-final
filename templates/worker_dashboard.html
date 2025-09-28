@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bttn.css/0.2.4/bttn.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Worker Dashboard</title>
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: black;
+        background-image: url('https://plus.unsplash.com/premium_photo-1661962692059-55d5a4319814?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        width: 100%;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+      }
+      .navbar-brand:hover {
+        background-color: lightgreen;
+        transition: 0.5s;
+      }
+      .navbar-nav .nav-link {
+        color: white;
+        font-size: 18px;
+      }
+      .navbar-nav .nav-link:hover {
+        color: lightgreen;
+      }
+      .welcome-message {
+        color: white;
+        font-size: 18px;
+        margin-right: 20px;
+      }
+      .available-work {
+        max-width: 800px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-top: 50px;
+      }
+      .available-work h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .work-item {
+        background: #f4f4f4;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .work-item h3 {
+        color: #007bff;
+        margin-bottom: 10px;
+      }
+      .work-item p {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .work-item .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .work-item .btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bolder" href="{{ url_for('base') }}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('ai_engine_page') }}">AI Engine</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('chatbot') }}">Chatbot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('market') }}">Supplements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('crop_form') }}">Crop Recommendation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('farmer_dashboard') }}">Farmer Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('govr_schemes') }}">Government Schemes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('post_work') }}">Post Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('contact') }}">Contact Us</a>
+            </li>
+          </ul>
+          {% if session.get('email') %}
+            <span class="welcome-message">Welcome, {{ session.get('email') }}</span>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="available-work">
+      <h2>Available Work</h2>
+      <div class="work-item">
+        <h3>Work Title 1</h3>
+        <p>Description of the work. This is a brief description of what the work entails.</p>
+        <button class="btn">Apply Now</button>
+      </div>
+      <div class="work-item">
+        <h3>Work Title 2</h3>
+        <p>Description of the work. This is a brief description of what the work entails.</p>
+        <button class="btn">Apply Now</button>
+      </div>
+      <div class="work-item">
+        <h3>Work Title 3</h3>
+        <p>Description of the work. This is a brief description of what the work entails.</p>
+        <button class="btn">Apply Now</button>
+      </div>
+      <!-- Add more work items as needed -->
+    </div>
+  </body>
+</html>

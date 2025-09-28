@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supplement Market</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-item {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  {% extends 'base.html' %}
+  {% block pagetitle %} Supplement Market {% endblock pagetitle %}
+
+  {% block body %}
+  <script>
+    function addToCart(index, name, image, link) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ index, name, image, link, quantity: 1 });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+    }
+
+    function updateCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartContainer = document.getElementById('cart-container');
+        let cartList = document.getElementById('cart-list');
+        let cartCount = document.getElementById('cart-count');
+
+        cartList.innerHTML = "";
+        let totalItems = 0;
+
+        if (cart.length === 0) {
+            cartList.innerHTML = "<p class='text-center'>Your cart is empty.</p>";
+        } else {
+            cart.forEach((item, i) => {
+                totalItems += item.quantity;
+                cartList.innerHTML += `
+                    <div class="row p-3 bg-white shadow rounded-lg mb-2">
+                        <div class="col-md-2 text-center">
+                            <img src="${item.image}" width="80" height="100">
+                        </div>
+                        <div class="col-md-4">
+                            <h6>${item.name}</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${i}, -1)">-</button>
+                            <span id="quantity-${i}" class="mx-2">${item.quantity}</span>
+                            <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${i}, 1)">+</button>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <a target="_blank" href="${item.link}" class="btn btn-sm btn-success">Buy</a>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <button class="btn btn-sm btn-danger" onclick="removeItem(${i})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        cartCount.textContent = totalItems;
+    }
+
+    function updateQuantity(index, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index].quantity + change > 0) {
+            cart[index].quantity += change;
+        } else {
+            cart.splice(index, 1);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+    }
+
+    function clearCart() {
+        localStorage.removeItem('cart');
+        updateCart();
+    }
+
+    function toggleCart() {
+        let cartContainer = document.getElementById('cart-container');
+        if (cartContainer.style.display === "none" || cartContainer.style.display === "") {
+            cartContainer.style.display = "block";
+        } else {
+            cartContainer.style.display = "none";
+        }
+        updateCart();
+    }
+
+    function searchSupplements() {
+        let input = document.getElementById('search-bar').value.toLowerCase();
+        let supplementCards = document.getElementsByClassName('supplement-card');
+
+        for (let i = 0; i < supplementCards.length; i++) {
+            let card = supplementCards[i];
+            let name = card.getAttribute('data-name').toLowerCase();
+            if (name.includes(input)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", updateCart);
+  </script>
+
+  <br>
+  <div class="row mb-5 text-center text-white">
+    <div class="col-lg-10 mx-auto">
+        <h1 class="display-4" style="padding-top: 2%; font-weight: 400; color: white; text-shadow: black 2px 2px 2px;"><b>Supplements</b></h1>
+        <p class="lead" style="font-weight: 500; color: white; text-shadow: black 2px 2px 2px;">Buy Supplements & Fertilizer at one place</p>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="row mb-4">
+    <div class="col-lg-10 mx-auto">
+        <input type="text" id="search-bar" class="form-control" placeholder="Search for supplements..." onkeyup="searchSupplements()">
+    </div>
+  </div>
+
+  <div class="row p-3">
+    {% for index in range(0, supplement_name | length) %}
+    {% if index != 4 %}
+    <div class="col supplement-card" data-name="{{ supplement_name[index] }}">
+        <div class="p-5 bg-white shadow rounded-lg" style="height: 95%;">
+        <center>
+            {% if index in [3, 5, 7, 11, 15, 18, 20, 23, 24, 25, 28, 38] %}
+            <h5>Fertilizer<b style="color: green;"> (Healthy):</b></h5>
+            {% else %}
+            <h5>Supplements<b style="color: red;"> (Diseased):</b></h5>
+            {% endif %}
+            <br>
+            <img src="{{ supplement_image[index] }}" width="200" height="250">
+            <br><br>
+            <h6>For {{ disease[index] }}</h6>
+            <p>{{ supplement_name[index] }}</p>
+            <a target="_blank" href="{{ buy[index] }}"><button type="button" class="btn btn-success" style="background-color: #05380b;">Buy Product</button></a>
+            <button type="button" class="btn btn-warning" onclick="addToCart({{ index }}, '{{ supplement_name[index] }}', '{{ supplement_image[index] }}', '{{ buy[index] }}')">Add to Cart</button>
+        </center>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+
+<!-- Go to Cart Button -->
+<div class="row mt-5">
+    <div class="col-lg-10 mx-auto text-center">
+        <button type="button" class="btn btn-primary" onclick="toggleCart()">Go to Cart (<span id="cart-count">0</span>)</button>
+        <button type="button" class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+    </div>
+</div>
+
+<!-- Cart Display Section -->
+<div id="cart-container" class="container mt-4" style="display: none;">
+    <h2>Your Cart</h2>
+    <div id="cart-list"></div>
+</div>
+
+{% endblock body %}
+</body>
+</html>

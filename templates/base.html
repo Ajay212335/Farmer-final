@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bttn.css/0.2.4/bttn.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>{% block pagetitle %}Home{% endblock pagetitle %}</title>
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: black;
+        background-image: url('https://plus.unsplash.com/premium_photo-1661962692059-55d5a4319814?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        width: 100%;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+      }
+      .navbar-brand:hover {
+        background-color: lightgreen;
+        transition: 0.5s;
+      }
+      .navbar-nav .nav-link {
+        color: white;
+        font-size: 18px;
+      }
+      .navbar-nav .nav-link:hover {
+        color: lightgreen;
+      }
+      .welcome-message {
+        color: white;
+        font-size: 18px;
+        margin-right: 20px;
+      }
+      label {
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+      .footer-basic {
+        padding: 50px 30px 50px;
+        opacity: 20%;
+        color: white;
+      }
+      .footer-basic ul {
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+      .footer-basic li {
+        padding: 0 10px;
+      }
+      .footer-basic ul a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.8;
+      }
+      .footer-basic ul a:hover {
+        opacity: 1;
+      }
+      .footer-basic .social {
+        text-align: center;
+        padding-bottom: 25px;
+      }
+      .footer-basic .social > a {
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        margin: 0 8px;
+        color: inherit;
+        opacity: 0.75;
+      }
+      .footer-basic .social > a:hover {
+        opacity: 0.9;
+      }
+      .footer-basic .copyright {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #aaa;
+        margin-bottom: 0;
+      }
+      div h1 {
+        color: white;
+      }
+      div button {
+        color: white;
+        background-color: rgb(1, 87, 1);
+      }
+      div a {
+        color: white;
+        text-decoration: none;
+      }
+      #weather-container {
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 45px;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: fixed;
+        bottom: 100px;
+        left: 50px;
+        z-index: 1000;
+      }
+      #weather-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      #result {
+        margin-top: 20px;
+        color: #333;
+      }
+      #result h3 {
+        margin-bottom: 10px;
+      }
+      #result p {
+        margin: 10px 0;
+        background-color:whitesmoke;
+      }
+      #result img {
+        margin-top: 10px;
+      }
+      .project-info {
+        max-width: 900px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 40px;
+        border-radius: 60px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-top: 100px;
+        position: absolute;
+        right: 80px;
+        bottom: 100px;
+      }
+      .project-info h2 {
+        color: #333;
+        width: 100%;
+        height: 100%;
+      }
+      .project-info p {
+        color: #333;
+        font-size: 18px;
+        text-align: left;
+      }
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .icon-container a {
+        margin: 0 10px;
+        color: #007bff;
+        font-size: 24px;
+        transition: color 0.3s ease;
+      }
+      .icon-container a:hover {
+        color: #0056b3;
+      }
+      .carousel-container {
+        width: 80%;
+        overflow: hidden;
+        margin: auto;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background: white;
+        margin-top: 50px;
+      }
+      .carousel {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        animation: scroll 12s linear infinite;
+      }
+      .slide {
+        flex: 0 0 auto;
+        width: 300px;
+        height: 200px;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .description {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 10px;
+        font-size: 14px;
+        text-align: center;
+      }
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+      .carousel-container:hover .carousel {
+        animation-play-state: paused;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bolder" href="{{ url_for('base') }}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('ai_engine_page') }}">AI Engine</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('chatbot') }}">Chatbot</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('market') }}">Supplements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('crop_form') }}">Crop Recommendation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('farmer_dashboard') }}">Farmer Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('govr_schemes') }}">Government Schemes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('post_work') }}">Post Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bolder" href="{{ url_for('contact') }}">Contact Us</a>
+            </li>
+          </ul>
+          <a href="/logout" class="btn btn-danger">Logout</a>
+          {% if session.get('email') %}
+            <li class="navbar-brand">
+              <a class="nav-link fw-bolder" href="{{ url_for('logout') }}" style="color: white;">Logout</a>
+            </li>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+   
+    {% block body %}
+    {% if request.endpoint == 'base' %}
+      <!-- Real-Time Weather Section -->
+      <div id="weather-container">
+        <h2>Real-Time Weather</h2>
+        <div id="result"></div>
+      </div>
+
+      <!-- Project Information Section -->
+      <div class="project-info">
+        <h2>AI-DRIVEN FARMING ASSISTANCE AND MARKETPLACE FOR FARMERS</h2>
+        <p>Welcome to our agricultural assistance platform. Our project aims to provide farmers with the tools and information they need to optimize their farming operations. From real-time weather updates to crop recommendations and government schemes, we offer a comprehensive suite of services to support sustainable agriculture.</p>
+        <div class="icon-container">
+          <a href="{{ url_for('ai_engine_page') }}" title="AI Engine"><i class="ion-ios-gear-outline"></i></a>
+          <a href="{{ url_for('chatbot') }}" title="Chatbot"><i class="ion-ios-chatboxes-outline"></i></a>
+          <a href="{{ url_for('market') }}" title="Supplements"><i class="ion-ios-cart-outline"></i></a>
+          <a href="{{ url_for('crop_form') }}" title="Crop Recommendation"><i class="ion-ios-leaf-outline"></i></a>
+          <a href="{{ url_for('farmer_dashboard') }}" title="Farmer Dashboard"><i class="ion-ios-person-outline"></i></a>
+          <a href="{{ url_for('govr_schemes') }}" title="Government Schemes"><i class="ion-ios-paper-outline"></i></a>
+          <a href="{{ url_for('post_work') }}" title="Post Work"><i class="ion-ios-briefcase-outline"></i></a>
+          <a href="{{ url_for('contact') }}" title="Contact Us"><i class="ion-ios-mail-outline"></i></a>
+        </div>
+      </div>
+
+      <!-- Smart Farming Carousel Section -->
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="slide">
+            <img src="https://th.bing.com/th/id/OIP.gkv7U1QsAck8IQXhyUeN8gAAAA?rs=1&pid=ImgDetMain" alt="Smart Farm">
+            <div class="description">AI- Based smart form </div>
+          </div>
+          <div class="slide">
+            <img src="https://www.ischool.berkeley.edu/sites/default/files/styles/facebook_image/public/sproject_teaser_image/reversed.jpg?itok=SuizhEmV" alt="Disease Detection">
+            <div class="description">Crop Disease Detection</div>
+          </div>
+          <div class="slide">
+            <img src="https://i.pinimg.com/736x/10/98/56/109856ae744530d2febbcb9f9aa02796--vegetable-stand-farm-stand.jpg" alt="Marketplace">
+            <div class="description">Farmer Marketplace</div>
+          </div>
+          <div class="slide">
+            <img src="https://static.vecteezy.com/system/resources/previews/042/058/878/original/weather-3d-logo-design-shiny-mockup-logo-with-textured-wall-realistic-illustration-vector.jpg" alt="Weather AI">
+            <div class="description">Weather Prediction </div>
+          </div>
+          <div class="slide">
+            <img src="https://kj1bcdn.b-cdn.net/media/72880/cet.jpg" alt="Weather AI">
+            <div class="description">Government_schems </div>
+          </div>
+          <!-- Duplicate slides to ensure continuous movement -->
+          <div class="slide">
+            <img src="https://th.bing.com/th/id/OIP.gkv7U1QsAck8IQXhyUeN8gAAAA?rs=1&pid=ImgDetMain" alt="Smart Farm">
+            <div class="description">AI-Based Smart Farm</div>
+          </div>
+          <div class="slide">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/038/453/196/small_2x/ai-generated-agricultural-shot-showcases-rows-of-young-corn-plants-thriving-in-a-vast-field-with-fertile-soil-ai-generated-photo.jpg" alt="Automated Watering">
+            <div class="description">Crop Recommendation</div>
+          </div>
+          <div class="slide">
+            <img src="https://www.ischool.berkeley.edu/sites/default/files/styles/facebook_image/public/sproject_teaser_image/reversed.jpg?itok=SuizhEmV" alt="Disease Detection">
+            <div class="description">Crop Disease Detection</div>
+          </div>
+          <div class="slide">
+            <img src="https://i.pinimg.com/736x/10/98/56/109856ae744530d2febbcb9f9aa02796--vegetable-stand-farm-stand.jpg" alt="Marketplace">
+            <div class="description">Farmer Marketplace</div>
+          </div>
+          <div class="slide">
+            <img src="https://static.vecteezy.com/system/resources/previews/042/058/878/original/weather-3d-logo-design-shiny-mockup-logo-with-textured-wall-realistic-illustration-vector.jpg" alt="Weather AI">
+            <div class="description">Weather Prediction AI</div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% endblock body %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+      async function getWeather(lat, lon) {
+          const apiKey = "a427931455624645a85123100251403";
+          const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
+
+          try {
+              const response = await fetch(url);
+              const data = await response.json();
+
+              if (data.error) {
+                  document.getElementById("result").innerHTML = `<p>Location not found!</p>`;
+              } else {
+                  document.getElementById("result").innerHTML = `
+                      <h3>${data.location.name}, ${data.location.country}</h3>
+                      <p>Temperature: ${data.current.temp_c}°C</p>
+                      <p>Condition: ${data.current.condition.text}</p>
+                      <img src="${data.current.condition.icon}" alt="Weather Icon">
+                  `;
+              }
+          } catch (error) {
+              document.getElementById("result").innerHTML = `<p>Error fetching data.</p>`;
+          }
+      }
+
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(position => {
+                  const lat = position.coords.latitude;
+                  const lon = position.coords.longitude;
+                  getWeather(lat, lon);
+              }, error => {
+                  document.getElementById("result").innerHTML = `<p>Error getting location: ${error.message}</p>`;
+              });
+          } else {
+              document.getElementById("result").innerHTML = `<p>Geolocation is not supported by this browser.</p>`;
+          }
+      }
+
+      // Automatically get weather on page load
+      window.onload = getLocation;
+    </script>
+  </body>
+</html>
