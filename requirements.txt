@@ -11,3 +11,4 @@ pandas
 python-dotenv
 razorpay
 langchain-google-genai
+gunicorn
