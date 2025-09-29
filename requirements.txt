@@ -1,2 +1,14 @@
 Flask
+flask-pymongo
+pandas
+Pillow
+torch
+torchvision
+numpy
+flask-session
+python-dotenv
+razorpay
+langchain-google-genai
+google-generativeai
+bson
 gunicorn
