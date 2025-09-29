@@ -1,5 +1,6 @@
 Flask
 flask-pymongo
+pymongo
 pandas
 Pillow
 torch
@@ -10,5 +11,4 @@ python-dotenv
 razorpay
 langchain-google-genai
 google-generativeai
-bson
 gunicorn
