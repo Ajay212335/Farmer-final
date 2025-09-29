@@ -23,7 +23,7 @@ app.config["SESSION_PERMANENT"] = False
 Session(app)
 
 # MongoDB (Use Render/Atlas connection string via env)
-app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb://localhost:27017/loginapp")
+app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb+srv://prasheetha:prasheetha37@cluster0.wne9ze2.mongodb.net/loginapp?retryWrites=true&w=majority&appName=Cluster0")
 mongo = PyMongo(app)
 
 # Google API
@@ -572,3 +572,4 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     # host=0.0.0.0 is required for Render
     app.run(host="0.0.0.0", port=port)
+
