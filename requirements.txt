@@ -12,3 +12,4 @@ razorpay
 langchain-google-genai
 google-generativeai
 gunicorn
+scikit-learn
